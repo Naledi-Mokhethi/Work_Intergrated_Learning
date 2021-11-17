@@ -62,6 +62,10 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+a.hover {
+    opacity: .3 !important;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
