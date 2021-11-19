@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,17 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         //Get /admin/Jobs
         public async Task<IActionResult> Index()
         {
-            return View(await context.Faculties.OrderBy(x => x.Sorting).Include(x => x.FacultyName).ToListAsync());
+            return View(await context.Jobs.OrderBy(x => x.Sorting).ToListAsync());
 
         }
 
-       
+        //Get /admin/jobs/create 
+        public IActionResult Create() {
+            ViewBag.FacultyId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "Name");
+
+            return View();
+        } 
+
+
     }
 }

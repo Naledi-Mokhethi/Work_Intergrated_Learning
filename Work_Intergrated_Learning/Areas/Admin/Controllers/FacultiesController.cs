@@ -19,13 +19,13 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         {
             this.context = context;
         }
-        //Get /admin/faculties
+        //GET /admin/faculties
         public async Task<IActionResult> Index()
         {
             return View(await context.Faculties.OrderBy(x => x.Sorting).ToListAsync());
 
         }
-        //Get /admin/faculties/create 
+        //GET /admin/faculties/create 
         public IActionResult Create() => View();
 
         //Post /admin/faculties/create 
