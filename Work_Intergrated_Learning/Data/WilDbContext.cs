@@ -13,7 +13,10 @@ namespace Work_Intergrated_Learning.Data
         {
 
         }
-        public DbSet<Jobs> Jobs { get; set; }
+      
         public DbSet<Faculty> Faculties { get; set; }
+
+        public DbSet<Jobs> Jobs { get; set; }
+
     }
 }

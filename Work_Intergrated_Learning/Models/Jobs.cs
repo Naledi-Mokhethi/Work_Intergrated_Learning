@@ -10,6 +10,7 @@ namespace Work_Intergrated_Learning.Models
     {
         public int Id { get; set; }
         [Required]
+        public String Slug { get; set; }
         public String JobTitle { get; set; }
         [Required]
         public String JobDescription { get; set; }

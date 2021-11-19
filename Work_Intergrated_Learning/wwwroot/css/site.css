@@ -62,7 +62,7 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
-a.hover {
+a:hover {
     opacity: .3 !important;
 }
 

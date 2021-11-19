@@ -9,7 +9,7 @@ using Work_Intergrated_Learning.Data;
 namespace Work_Intergrated_Learning.Migrations
 {
     [DbContext(typeof(WilDbContext))]
-    [Migration("20211116223148_SecondCreate")]
+    [Migration("20211119005656_SecondCreate")]
     partial class SecondCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,6 @@ namespace Work_Intergrated_Learning.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Slug")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sorting")
@@ -63,6 +62,9 @@ namespace Work_Intergrated_Learning.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("JobTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

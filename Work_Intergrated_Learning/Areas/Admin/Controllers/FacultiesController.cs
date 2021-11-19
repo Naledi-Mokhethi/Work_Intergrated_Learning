@@ -35,7 +35,7 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                faculty.Slug = faculty.FacultyName.ToLower().Replace("", "-");
+                faculty.Slug = faculty.FacultyName.ToLower().Replace(" ", "-");
                 faculty.Sorting = 100;
 
                 var slug = await context.Faculties.FirstOrDefaultAsync(x => x.Slug == faculty.Slug);
@@ -55,7 +55,7 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
             return View(faculty);
         }
 
-        //Get /admin/faculties/Edit
+        //GET /admin/faculties/Edit
         public async Task<IActionResult> Edit(int Id)
         {
             Faculty faculty = await context.Faculties.FindAsync(Id);
@@ -66,7 +66,58 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
 
         }
 
+        //POST /admin/faculties/Edit
+       [HttpPost]
+       [ValidateAntiForgeryToken]
+       public async Task<IActionResult> Edit(int id,Faculty faculty)
+        {
+            if (ModelState.IsValid)
+            {
+                faculty.Slug = faculty.FacultyName.ToLower().Replace(" ", "-");
+
+
+                var slug = await context.Faculties.Where(x => x.Id != id).FirstOrDefaultAsync(x => x.Slug == faculty.Slug);
+                if (slug != null)
+                {
+                    ModelState.AddModelError("", "The Faculty already exists.");
+                    return View(faculty);
+                }
+
+                context.Update(faculty);
+                await context.SaveChangesAsync();
+
+                TempData["Success"] = "The Faculty has been edited";
+
+                return RedirectToAction("Edit", new {id});
+            }
+            return View(faculty);
+        }
+
+        //GET /admin/faculties/Delete
+        public async Task<IActionResult> Delete(int Id)
+        {
+            Faculty faculty = await context.Faculties.FindAsync(Id);
+            if (faculty == null)
+            {
+                TempData["Error"] = "The Faculty does not exist";
+            }
+            else
+            {
+                context.Faculties.Remove(faculty);
+                await context.SaveChangesAsync();
+
+                TempData["Success"] = "The Faculty has been deleted";
+            }
+
+            return RedirectToAction("Index");
+
+        }
+
+
+
 
 
     }
+
+    
 }
