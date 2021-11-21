@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         //GET /admin/jobs/create 
         public IActionResult Create()
         {
-            //  ViewBag.FacultyId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "Name");
+             // ViewBag.DepartmentId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "Name");
 
             return View();
         }
@@ -78,6 +79,8 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
             Jobs job = await context.Jobs.FindAsync(Id);
             if (job == null)
                 return NotFound();
+
+           // ViewBag.DepartmentId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "Name");
 
             return View(job);
 

@@ -19,6 +19,7 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         {
             this.context = context;
         }
+
         //GET /admin/faculties
         public async Task<IActionResult> Index()
         {

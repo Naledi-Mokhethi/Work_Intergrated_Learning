@@ -18,5 +18,7 @@ namespace Work_Intergrated_Learning.Data
 
         public DbSet<Jobs> Jobs { get; set; }
 
+        public DbSet<Department> Departments { get; set; }
+     
     }
 }
