@@ -54,7 +54,7 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
                 context.Add(job);
                 await context.SaveChangesAsync();
 
-                TempData["Success"] = "The Faculty has been added";
+                TempData["Success"] = "The Job has been added";
 
                 return RedirectToAction("Index");
             }
@@ -82,17 +82,17 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
                 job.Slug = job.JobTitle.ToLower().Replace(" ", "-");
 
 
-                var slug = await context.Faculties.Where(x => x.Id != id).FirstOrDefaultAsync(x => x.Slug == faculty.Slug);
+                var slug = await context.Jobs.Where(x => x.Id != id).FirstOrDefaultAsync(x => x.Slug == job.Slug);
                 if (slug != null)
                 {
-                    ModelState.AddModelError("", "The Faculty already exists.");
+                    ModelState.AddModelError("", "The Job already exists.");
                     return View(job);
                 }
 
                 context.Update(job);
                 await context.SaveChangesAsync();
 
-                TempData["Success"] = "The Faculty has been edited";
+                TempData["Success"] = "The Job has been edited";
 
                 return RedirectToAction("Edit", new { id });
             }
@@ -105,14 +105,14 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
             Jobs job = await context.Jobs.FindAsync(Id);
             if (job == null)
             {
-                TempData["Error"] = "The Faculty does not exist";
+                TempData["Error"] = "The Job does not exist";
             }
             else
             {
                 context.Jobs.Remove(job);
                 await context.SaveChangesAsync();
 
-                TempData["Success"] = "The Faculty has been deleted";
+                TempData["Success"] = "The Job has been deleted";
             }
 
             return RedirectToAction("Index");
