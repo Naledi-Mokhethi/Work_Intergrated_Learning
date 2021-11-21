@@ -16,7 +16,7 @@ namespace Work_Intergrated_Learning.Migrations
                  JobTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                  JobDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                  JobRoleNResponsibilities = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                 Department = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                 Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
                  Sorting = table.Column<int>(type: "int", nullable: false)
              },
              constraints: table =>

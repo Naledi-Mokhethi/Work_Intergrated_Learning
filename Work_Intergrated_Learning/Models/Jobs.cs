@@ -9,9 +9,9 @@ namespace Work_Intergrated_Learning.Models
     public class Jobs
     {
         public int Id { get; set; }
-        [Required]
         public String Slug { get; set; }
         [Display(Name = "Job Title")]
+        [Required]
         public String JobTitle { get; set; }
         [Required]
         [Display(Name = "Job Description")]
@@ -19,7 +19,7 @@ namespace Work_Intergrated_Learning.Models
         [Required]
         [Display(Name = "Roles and Responsibilities")]
         public String JobRoleNResponsibilities { get; set; }
-        [Required]
+        //[Required]
         public String Department { get; set; }
         public int Sorting { get; set; }
 

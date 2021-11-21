@@ -16,12 +16,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.JobTitle)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.JobDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.JobRoleNResponsibilities)
-            </th>
+     
             <th>
                 @Html.DisplayNameFor(model => model.Department)
             </th>
@@ -36,20 +31,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.JobTitle)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JobDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JobRoleNResponsibilities)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Department)
             </td>
            
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

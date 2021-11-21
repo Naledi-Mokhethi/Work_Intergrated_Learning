@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,6 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
     public class JobsController : Controller
     {
         private readonly WilDbContext context;
-
         public JobsController(WilDbContext context)
         {
             this.context = context;
@@ -27,8 +25,9 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         }
 
         //GET /admin/jobs/create 
-        public IActionResult Create() {
-            ViewBag.FacultyId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "Name");
+        public IActionResult Create()
+        {
+            //  ViewBag.FacultyId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "Name");
 
             return View();
         }
@@ -48,7 +47,7 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
                 if (slug != null)
                 {
                     ModelState.AddModelError("", "The Job already exists.");
-                    return View();
+                    return View(job);
                 }
 
                 context.Add(job);
@@ -61,7 +60,19 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
             return View(job);
         }
 
-        //GET /admin/faculties/Edit
+        //GET /admin/jobs/details/5
+        public async Task<IActionResult>Details(int Id)
+        {
+            Jobs job = await context.Jobs.FindAsync(Id);
+            if(job == null)
+            {
+                return NotFound();
+            }
+            return View(job);
+        }
+
+
+        //GET /admin/jobs/Edit
         public async Task<IActionResult> Edit(int Id)
         {
             Jobs job = await context.Jobs.FindAsync(Id);
@@ -72,10 +83,10 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
 
         }
 
-        //POST /admin/faculties/Edit
+        //POST /admin/jobs/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Jobs job)
+        public async Task<IActionResult> Edit(int id,Jobs job)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +129,5 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
             return RedirectToAction("Index");
 
         }
-
-
     }
 }
