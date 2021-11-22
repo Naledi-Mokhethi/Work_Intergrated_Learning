@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using Work_Intergrated_Learning.Models;
 
 namespace Work_Intergrated_Learning.Data
 {
-    public class WilDbContext : DbContext
+    public class WilDbContext : IdentityDbContext<AppUser>
     {
         public WilDbContext(DbContextOptions<WilDbContext> options):base(options)
         {
