@@ -24,7 +24,7 @@ namespace Work_Intergrated_Learning.Controllers
         {
             if (slug == null)
             {
-                return View(await context.Pages.Where(x => x.Slug == slug).FirstOrDefaultAsync());
+                return View(await context.Pages.Where(x => x.Slug == "home").FirstOrDefaultAsync());
             }
 
             Page page = await context.Pages.Where(x => x.Slug == slug).FirstOrDefaultAsync();

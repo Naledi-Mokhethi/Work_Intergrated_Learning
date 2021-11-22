@@ -54,6 +54,13 @@ namespace Work_Intergrated_Learning
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    "pages",
+                    "{slug?}",
+                    defaults: new {controller = "Pages", action = "Page" }
+
+                   );
+
+                endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                   );
