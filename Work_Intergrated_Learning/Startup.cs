@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Work_Intergrated_Learning.Data;
+using Work_Intergrated_Learning.Models;
 
 namespace Work_Intergrated_Learning
 {
@@ -29,6 +31,8 @@ namespace Work_Intergrated_Learning
             services.AddControllersWithViews();
 
             services.AddDbContext<WilDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WilDbContext")));
+
+            services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<WilDbContext>().AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,15 +55,11 @@ namespace Work_Intergrated_Learning
 
             app.UseAuthorization();
 
+            app.UseAuthentication();
+
+
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    "pages",
-                    "{slug?}",
-                    defaults: new {controller = "Pages", action = "Page" }
-
-                   );
-
+            { 
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
@@ -68,6 +68,13 @@ namespace Work_Intergrated_Learning
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                   "pages",
+                   "{slug?}",
+                   defaults: new { controller = "Pages", action = "Page" }
+
+                  );
             });
         }
     }

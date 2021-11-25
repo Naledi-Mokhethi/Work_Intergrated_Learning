@@ -14,9 +14,20 @@ namespace Work_Intergrated_Learning.Models
         public int Number { get; set; }
         public string Department { get; set; }
         public int YearOfStudy { get; set; }
-        public int Password { get; set; }
+        public string Password { get; set; }
         public string CV { get; set; }
         public string AcademicRecord { get; set; }
+
+        public User() { }
+
+        public User(AppUser appUser)
+        {
+            UserName = appUser.UserName;
+            Email = appUser.Email;
+            PhoneNumber = appUser.PhoneNumber;
+            Password = appUser.PasswordHash;
+
+        }
 
 
 
