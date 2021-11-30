@@ -29,12 +29,13 @@
                 <span asp-validation-for="JobRoleNResponsibilities" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Department" class="control-label"></label>
-                <select asp-for="Department" asp-items="@ViewBag.Department" class="form-control">
-                    <option value="0">Choose a Department </option>
+                <label asp-for="FacultyId" class="control-label"></label>
+                <select asp-for="FacultyId" asp-items="@ViewBag.FacultyId" class="form-control">
+                    <option value="0">Select Faculty </option>
                 </select>
-                <span asp-validation-for="Department" class="text-danger"></span>
+                <span asp-validation-for="FacultyId" class="text-danger"></span>
             </div>
+
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

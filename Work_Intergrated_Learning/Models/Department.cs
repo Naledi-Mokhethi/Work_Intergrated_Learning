@@ -10,6 +10,7 @@ namespace Work_Intergrated_Learning.Models
     public class Department
     {
         public int Id { get; set; }
+        [Display(Name = "Department Name")]
         [Required, MinLength(4, ErrorMessage = "Enter a minimum of 4 characters")]
         public String DepName { get; set; }
         public int FacultyId { get; set; }

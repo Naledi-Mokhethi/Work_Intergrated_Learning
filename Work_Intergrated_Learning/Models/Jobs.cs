@@ -20,15 +20,16 @@ namespace Work_Intergrated_Learning.Models
         [Required]
         [Display(Name = "Roles and Responsibilities")]
         public String JobRoleNResponsibilities { get; set; }
+        [Display(Name = "Faculty")]
+        [Range(1, int.MaxValue,ErrorMessage ="Select a Faculty")]
         public int FacultyId { get; set; }
-        public int DepartmentId { get; set; }
+      
         public int Sorting { get; set; }
 
         [ForeignKey("FacultyId")]
         public virtual Faculty Faculty { get; set; }
 
-        [ForeignKey("DepartmentId")]
-        public virtual Department Department { get; set; }
+       
 
 
     }

@@ -75,6 +75,12 @@ namespace Work_Intergrated_Learning
                    defaults: new { controller = "Pages", action = "Page" }
 
                   );
+                endpoints.MapControllerRoute(
+                 "jobs",
+                 "jobs/{facultySlug}",
+                 defaults: new { controller = "Jobs", action = "JobsByFaculty" }
+
+                );
             });
         }
     }

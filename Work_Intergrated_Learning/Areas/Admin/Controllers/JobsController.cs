@@ -28,7 +28,7 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         //GET /admin/jobs/create 
         public IActionResult Create()
         {
-             // ViewBag.DepartmentId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "Name");
+              ViewBag.FacultyId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "FacultyName");
 
             return View();
         }
@@ -39,6 +39,8 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Jobs job)
         {
+            ViewBag.FacultyId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "FacultyName");
+
             if (ModelState.IsValid)
             {
                 job.Slug = job.JobTitle.ToLower().Replace(" ", "-");
@@ -80,7 +82,7 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
             if (job == null)
                 return NotFound();
 
-           // ViewBag.DepartmentId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "Name");
+            ViewBag.FacultyId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "FacultyName");
 
             return View(job);
 
@@ -91,6 +93,8 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,Jobs job)
         {
+            ViewBag.FacultyId = new SelectList(context.Faculties.OrderBy(x => x.Sorting), "Id", "FacultyName");
+
             if (ModelState.IsValid)
             {
                 job.Slug = job.JobTitle.ToLower().Replace(" ", "-");

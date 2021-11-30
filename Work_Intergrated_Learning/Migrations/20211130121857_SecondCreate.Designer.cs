@@ -10,7 +10,7 @@ using Work_Intergrated_Learning.Data;
 namespace Work_Intergrated_Learning.Migrations
 {
     [DbContext(typeof(WilDbContext))]
-    [Migration("20211125092730_SecondCreate")]
+    [Migration("20211130121857_SecondCreate")]
     partial class SecondCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -276,9 +276,6 @@ namespace Work_Intergrated_Learning.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
                     b.Property<int>("FacultyId")
                         .HasColumnType("int");
 
@@ -301,8 +298,6 @@ namespace Work_Intergrated_Learning.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
 
                     b.HasIndex("FacultyId");
 
@@ -399,19 +394,11 @@ namespace Work_Intergrated_Learning.Migrations
 
             modelBuilder.Entity("Work_Intergrated_Learning.Models.Jobs", b =>
                 {
-                    b.HasOne("Work_Intergrated_Learning.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Work_Intergrated_Learning.Models.Faculty", "Faculty")
                         .WithMany()
                         .HasForeignKey("FacultyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Department");
 
                     b.Navigation("Faculty");
                 });
