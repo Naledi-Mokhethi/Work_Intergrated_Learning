@@ -20,8 +20,7 @@ namespace Work_Intergrated_Learning.Models
         [Required]
         [Display(Name = "Roles and Responsibilities")]
         public String JobRoleNResponsibilities { get; set; }
-        [Display(Name = "Faculty")]
-        [Range(1, int.MaxValue,ErrorMessage ="Select a Faculty")]
+        [Display(Name = "Faculty"), Required(ErrorMessage ="Faculty is required")]
         public int FacultyId { get; set; }
       
         public int Sorting { get; set; }

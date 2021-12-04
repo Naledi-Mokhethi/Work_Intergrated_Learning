@@ -21,7 +21,8 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         //GET /admin/Jobs
         public async Task<IActionResult> Index()
         {
-            return View(await context.Jobs.OrderBy(x => x.Sorting).ToListAsync());
+            return View(await context.Jobs.Include(e => e.Faculty).OrderBy(x => x.Sorting).ToListAsync());
+           
 
         }
 
@@ -66,7 +67,7 @@ namespace Work_Intergrated_Learning.Areas.Admin.Controllers
         //GET /admin/jobs/details/5
         public async Task<IActionResult>Details(int Id)
         {
-            Jobs job = await context.Jobs.FindAsync(Id);
+            Jobs job = await context.Jobs.Include(e => e.Faculty).FirstOrDefaultAsync( e => e.Id == Id);
             if(job == null)
             {
                 return NotFound();

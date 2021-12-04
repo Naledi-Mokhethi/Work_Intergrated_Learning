@@ -15,8 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Media\Images\" />
-    <Folder Include="Media\Documents\" />
+    <Folder Include="wwwroot\media\documents\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\media\images\CUT.jpg" />
+    <None Include="wwwroot\media\images\login-CUT.jpg" />
   </ItemGroup>
 
 </Project>
