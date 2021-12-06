@@ -8,11 +8,9 @@ namespace Work_Intergrated_Learning.Controllers
 {
     public class AccountController : Controller
     {
-        public string Index()
-        {
-            return "Hello";
-        }
-
+        //GET /Account/Register
+        public IActionResult Register() => View();
+        
     }
 
 }
