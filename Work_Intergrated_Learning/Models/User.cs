@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,6 +19,12 @@ namespace Work_Intergrated_Learning.Models
         public string Password { get; set; }
         public string CV { get; set; }
         public string AcademicRecord { get; set; }
+
+        [NotMapped]
+        public IFormFile CvUpload { get; set; }
+
+        [NotMapped]
+        public IFormFile AcademicRecordUpload { get; set; }
 
         public User() { }
 
