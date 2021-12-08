@@ -21,8 +21,11 @@ namespace Work_Intergrated_Learning.Models
         [Display(Name = "Roles and Responsibilities")]
         public String JobRoleNResponsibilities { get; set; }
         [Display(Name = "Faculty"), Required(ErrorMessage ="Faculty is required")]
+
+        //public DateTime Expirydate{ get; set; }
         public int FacultyId { get; set; }
-      
+        // public int DepartmentId { get; set; }
+      //  public Department DepartmentId { get; set; }
         public int Sorting { get; set; }
 
         [ForeignKey("FacultyId")]

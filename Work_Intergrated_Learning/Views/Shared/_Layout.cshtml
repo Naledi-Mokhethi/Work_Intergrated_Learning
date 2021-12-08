@@ -9,24 +9,47 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  navbar-light bg-white border-bottom box-shadow mb-1">
             <div class="container">
-              
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> 
-                    <img src="/media/images/CUT.jpg" alt="CUT Logo" />
+
+                <a class="navbar-brand" asp-area="" asp-controller="Jobs" asp-action="Index">
+                    <img src="/media/images/CUT.jpg" alt="CUT Logo" style="width:140px;height:70px" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        @await Component.InvokeAsync("MainMenu")
+                    <ul class="navbar-nav flex-grow-1 justify-content-end">
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Account" asp-action="Edit" class="btn btn-primary">Profile</a>
+                            </li>
+                            <li class="nav-item ml-1">
+                                <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Log Out</a>
+                            </li>
+                        }
+                        else
+                        {
+
+                            <li class="nav-item">
+                                <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Login</a>
+                            </li>
+                            <li class="nav-item ml-1">
+                                <a asp-controller="Account" asp-action="Register" class="btn btn-success">Register</a>
+                            </li>
+                        }
+
+
                     </ul>
+                    @*<ul class="navbar-nav flex-grow-1">
+                            @await Component.InvokeAsync("MainMenu")
+                        </ul>*@
 
                 </div>
             </div>
-    </nav>
+        </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -37,13 +60,15 @@
                 <div class="col">
                     @RenderBody()
                 </div>
-               
+
             </div>
-           
+
         </main>
     </div>
 
-    
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
